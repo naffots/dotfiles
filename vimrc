@@ -150,7 +150,7 @@ set t_Co=256
 :set noantialias
 
 " Color scheme
-colorscheme solarized
+colorscheme jellybeans
 set background=dark
 set encoding=utf-8
 
