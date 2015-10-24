@@ -1,0 +1,5 @@
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+
+fc-cache -vf ~/.fonts/
+
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
