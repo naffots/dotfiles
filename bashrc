@@ -115,3 +115,11 @@ if ! shopt -oq posix; then
 fi
 export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
 export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
+
+function _update_ps1() {
+   PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
