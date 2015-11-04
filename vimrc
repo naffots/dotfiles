@@ -112,7 +112,7 @@ augroup vimrcEx
 augroup END
 
 " bind K to search word under cursor
-nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K /<C-R><C-W><CR>
 
 " Softtabs, 2 spaces
 set tabstop=2
