@@ -1,5 +1,7 @@
 set shell=/bin/bash
 runtime macros/matchit.vim
+set runtimepath^=~/.vim/bundle/ag
+
 " use old regext engine. speed up ruby syntax highlighting
 " set re=1
 
