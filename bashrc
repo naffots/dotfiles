@@ -116,6 +116,7 @@ export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database
 export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
 export SVN_EDITOR=vim
 export BROWSER=firefox
+export EDITOR=vim
 
 function _update_ps1() {
    PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
