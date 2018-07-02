@@ -1,25 +1,7 @@
 set shell=/bin/bash
-runtime macros/matchit.vim
-set runtimepath^=~/.vim/bundle/ag
-
-" use old regext engine. speed up ruby syntax highlighting
-" set re=1
 
 set ttyfast
 set lazyredraw
-
-let $PATH='/usr/local/bin:' . $PATH
-
-:au FocusLost * :wa "Save on focus lost
-
-" Sessions
-let g:session_autoload = 'no'
-
-" Leader Mappings
-let mapleader = "\<Space>"
-map <Leader>w :update<CR>
-map <Leader>q :qall<CR>
-"
 
 " Toggle nerdtree with F10
 map <F10> :NERDTreeToggle<CR>
@@ -31,24 +13,10 @@ set ttimeout
 set ttimeoutlen=20
 set notimeout
 
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-
 " highlight vertical column of cursor
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline 
 set cursorline 
-
-"key to insert mode with paste using F2 key
-map <F2> :set paste<CR>i
-" Leave paste mode on exit
-au InsertLeave * set nopaste
-
-" Command aliases
-cabbrev tp tabprev
-cabbrev tn tabnext
-cabbrev tf tabfirst
-cabbrev tl tablast
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
@@ -87,9 +55,6 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\ 
-
-" Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -135,7 +100,6 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 
-
 :set smartcase
 :set ignorecase
 :set noantialias
@@ -152,14 +116,6 @@ hi CursorLineNr guifg=#050505
 set number
 set numberwidth=5
 
-" Persistent undo
-set undodir=~/.vim/undo/
-set undofile
-set undolevels=1000
-set undoreload=10000
-
-" convert hash rockets
-nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -176,9 +132,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
@@ -188,12 +141,6 @@ let g:html_indent_tags = 'li\|p'
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_ruby_checkers = ['mri']
@@ -205,12 +152,6 @@ au BufWritePre *.rb :%s/\s\+$//e
 " cmd n, cmd p for fwd/backward in search
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
-
-" Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 au BufNewFile,BufRead *.vue set filetype=html
 
