@@ -1,0 +1,19 @@
+###############
+# URXVT settings
+################
+
+URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.loginShell:           true
+URxvt.internalBorder:       3
+URxvt.lineSpace: 0
+URxvt*background: black
+URxvt*foreground: white
+
+# Monaco Linux font
+URxvt*font: xft:Monaco:pixelsize=12
+URxvt*boldFont: xft:Monaco:bold:pixelsize=12
+URxvt*letterSpace: -1
+
+# scrollbar - true (default) or false
+URxvt*scrollBar: false
