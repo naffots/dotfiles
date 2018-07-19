@@ -12,12 +12,6 @@ map <F9> :NERDTreeFind<CR>
 set ttimeout
 set ttimeoutlen=20
 set notimeout
-
-" highlight vertical column of cursor
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline 
-set cursorline 
-
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
@@ -146,14 +140,13 @@ set splitright
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_enable_highlighting=0
 
-" Remove trailing whitespace on save for ruby files.
-au BufWritePre *.rb :%s/\s\+$//e
-
-" cmd n, cmd p for fwd/backward in search
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
-
 au BufNewFile,BufRead *.vue set filetype=html
+
+" Red cross
+let mapleader=","
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " Pathogen plug installer
 execute pathogen#infect()
