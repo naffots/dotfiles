@@ -128,6 +128,14 @@ function _update_ps1() {
    PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
 }
 
+peek() { 
+  if tmux info &> /dev/null; then 
+    tmux split-window -p 33 $EDITOR $@ || exit;
+  else
+    echo tmux not running;
+  fi
+}
+
 #if [ "$TERM" != "linux" ]; then
 #    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 #fi
