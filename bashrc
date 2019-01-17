@@ -76,9 +76,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -118,25 +115,25 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
-export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
+
 export SVN_EDITOR=vim
 export BROWSER=firefox
 export EDITOR=vim
 
-function _update_ps1() {
-   PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
-}
-
-peek() { 
-  if tmux info &> /dev/null; then 
+peek() {
+  if tmux info &> /dev/null; then
     tmux split-window -p 33 $EDITOR $@ || exit;
   else
     echo tmux not running;
   fi
 }
 
-#if [ "$TERM" != "linux" ]; then
-#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-#fi
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+    echo "Not implemented yet"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Do something under 64 bits Windows NT platform
+    alias cdgit='cd /c/git'
+    alias cdsvn='cd /c/svn'
+fi
 
