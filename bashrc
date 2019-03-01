@@ -130,7 +130,7 @@ peek() {
 
 if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
-    echo "Not implemented yet"
+    :
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     # Do something under 64 bits Windows NT platform
     alias cdgit='cd /c/git'
