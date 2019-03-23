@@ -108,6 +108,7 @@ hi CursorLineNr guifg=#050505
 
 " Numbers
 set number
+set relativenumber
 set numberwidth=5
 
 
