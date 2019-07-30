@@ -1,3 +1,5 @@
+scriptencoding utf-8
+set encoding=utf-8
 set shell=/bin/bash
 
 set ttyfast
@@ -92,16 +94,18 @@ set shiftwidth=4
 set expandtab
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
+" show hidden characters and linewraps
+set list
+set listchars=tab:→\ ,trail:·,precedes:«,extends:»
 
-:set smartcase
-:set ignorecase
-:set noantialias
+set smartcase
+
+set ignorecase
+set noantialias
 
 " Color scheme
-colorscheme jellybeans
+colorscheme evening
 set background=dark
-set encoding=utf-8
 
 " Highlight line number of where cursor currently is
 hi CursorLineNr guifg=#050505
@@ -130,16 +134,21 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+" Easier split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nmap <C-P> :bp<CR>
+nmap <C-N> :bn<CR>
+
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_enable_highlighting=0
 
 au BufNewFile,BufRead *.vue set filetype=html
 

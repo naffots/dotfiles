@@ -92,6 +92,9 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 
+function svndiff() { svn diff $@ | vim -R -;  }
+alias svnstatus='svn status | grep -E "^[ADM]"'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -131,6 +134,12 @@ peek() {
 if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
     :
+elif [ "$(expr substr $(uname -s) 1 9)" == "CYGWIN_NT" ]; then
+    # Do something under 64 bits Windows NT platform
+    alias cdgit='cd /cygdrive/c/git'
+    alias cdsvn='cd /cygdrive/c/svn'
+    alias svn='/cygdrive/c/Program\ Files/TortoiseSVN/bin/svn.exe'
+    alias cdd='cd /cygdrive/c/svn/ATMMain_trunk/solutions/r-TWR/LFV/RTC_Arlanda'
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     # Do something under 64 bits Windows NT platform
     alias cdgit='cd /c/git'
