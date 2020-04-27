@@ -72,6 +72,37 @@ xterm*|rxvt*)
     ;;
 esac
 
+# If you use ! to spawn a shell in the current directory, it could be nice to add:
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -92,7 +123,7 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 
-function svndiff() { svn diff $@ | vim -R -;  }
+function svndiff() { svn diff -x -w $@ | vim -R -;  }
 alias svnstatus='svn status | grep -E "^[ADM]"'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -136,10 +167,9 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     :
 elif [ "$(expr substr $(uname -s) 1 9)" == "CYGWIN_NT" ]; then
     # Do something under 64 bits Windows NT platform
-    alias cdgit='cd /cygdrive/c/git'
-    alias cdsvn='cd /cygdrive/c/svn'
-    alias svn='/cygdrive/c/Program\ Files/TortoiseSVN/bin/svn.exe'
-    alias cdd='cd /cygdrive/c/svn/ATMMain_trunk/solutions/r-TWR/LFV/RTC_Arlanda'
+    alias cdgit='cd /cygdrive/d/git'
+    alias cdsvn='cd /cygdrive/d/svn'
+    alias cdd='cd /cygdrive/d/svn/ATMMain/trunk/solutions/r-TWR/LFV/RTC_Arlanda'
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     # Do something under 64 bits Windows NT platform
     alias cdgit='cd /c/git'

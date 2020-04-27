@@ -160,3 +160,7 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " Pathogen plug installer
 execute pathogen#infect()
+
+set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
+map <F4> :execute "grep " . expand("<cword>") <Bar> cw<CR>
+map <F5> :r !svn diff<CR>
